@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Admin;
+use App\Models\AdvCategory;
 use App\Models\Subscription;
 use App\Models\SubscriptionDuration;
 use App\Models\User;
@@ -29,7 +30,6 @@ class DatabaseSeeder extends Seeder
 
 
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
-
         // create admins
 
         // admin 1  has  super_admin role
@@ -152,7 +152,6 @@ class DatabaseSeeder extends Seeder
             ]
         ]);
 
-
         DB::table('subscription_durations')->insert([
             [
                 'subscription_id' => $multi_city->id,
@@ -232,6 +231,136 @@ class DatabaseSeeder extends Seeder
                 'duration' => 'دوازده ماهه',
                 'discount' => null,
             ]
+        ]);
+
+
+        // create nested category
+
+        // lv 1
+        $cat_1 = AdvCategory::create([
+            'title' => 'دسته بندی یک',
+            'show_in_menu' => 1,
+            'status' => 1,
+        ]);
+
+        $cat_1_1 = AdvCategory::create([
+            'title' => 'دسته بندی یک',
+            'show_in_menu' => 1,
+            'status' => 1,
+            'parent_id' => $cat_1->id,
+        ]);
+
+        $cat_1_2 = AdvCategory::create([
+            'title' => 'دسته بندی یک',
+            'show_in_menu' => 1,
+            'status' => 1,
+            'parent_id' => $cat_1->id,
+        ]);
+
+        $cat_1_3 = AdvCategory::create([
+            'title' => 'دسته بندی یک',
+            'show_in_menu' => 1,
+            'status' => 1,
+            'parent_id' => $cat_1->id,
+        ]);
+
+        $cat_11 = AdvCategory::create([
+            'title' => 'تست یک',
+            'show_in_menu' => 1,
+            'status' => 1,
+            'parent_id' => $cat_1_3->id,
+        ]);
+        $cat_12 = AdvCategory::create([
+            'title' => 'تست دو',
+            'show_in_menu' => 1,
+            'status' => 1,
+            'parent_id' => $cat_1_3->id,
+        ]);
+
+        // lv 2
+        $cat_2 = AdvCategory::create([
+            'title' => 'دسته بندی دو',
+            'show_in_menu' => 1,
+            'status' => 1,
+        ]);
+
+        $cat_2_1 = AdvCategory::create([
+            'title' => 'دسته بندی دو یک',
+            'show_in_menu' => 1,
+            'status' => 1,
+            'parent_id' => $cat_2->id,
+        ]);
+
+        $cat_2_2 = AdvCategory::create([
+            'title' => 'دسته بندی دو دو',
+            'show_in_menu' => 1,
+            'status' => 1,
+            'parent_id' => $cat_2->id,
+        ]);
+
+        $cat_2_3 = AdvCategory::create([
+            'title' => 'دسته بندی دو سه',
+            'show_in_menu' => 1,
+            'status' => 1,
+            'parent_id' => $cat_2->id,
+        ]);
+
+
+        $cat_21 = AdvCategory::create([
+            'title' => 'تست یک',
+            'show_in_menu' => 1,
+            'status' => 1,
+            'parent_id' => $cat_2_3->id,
+        ]);
+        $cat_22 = AdvCategory::create([
+            'title' => 'تست دو',
+            'show_in_menu' => 1,
+            'status' => 1,
+            'parent_id' => $cat_2_3->id,
+        ]);
+
+
+
+        // lv 3
+        $cat_3 = AdvCategory::create([
+            'title' => 'دسته بندی سه',
+            'show_in_menu' => 1,
+            'status' => 1,
+        ]);
+
+        $cat_3_1 = AdvCategory::create([
+            'title' => 'دسته بندی سه یک',
+            'show_in_menu' => 1,
+            'status' => 1,
+            'parent_id' => $cat_3->id,
+        ]);
+
+        $cat_3_2 = AdvCategory::create([
+            'title' => 'دسته بندی سه دو',
+            'show_in_menu' => 1,
+            'status' => 1,
+            'parent_id' => $cat_3->id,
+        ]);
+
+        $cat_3_3 = AdvCategory::create([
+            'title' => 'دسته بندی سه سه',
+            'show_in_menu' => 1,
+            'status' => 1,
+            'parent_id' => $cat_3->id,
+        ]);
+
+
+        $cat_31 = AdvCategory::create([
+            'title' => 'تست یک',
+            'show_in_menu' => 1,
+            'status' => 1,
+            'parent_id' => $cat_3_3->id,
+        ]);
+        $cat_32 = AdvCategory::create([
+            'title' => 'تست دو',
+            'show_in_menu' => 1,
+            'status' => 1,
+            'parent_id' => $cat_3_3->id,
         ]);
 
 

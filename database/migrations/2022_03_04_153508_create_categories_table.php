@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('title');
             $table->tinyInteger('show_in_menu')->nullable();
-            $table->boolean('status')->default(true);
+            $table->tinyInteger('status')->nullable()->default(1);
             $table->foreignId('parent_id')->nullable()->constrained('categories');
            // $table->unsignedBigInteger('parent_id')->nullable()->default(NUll);
            // $table->foreign('parent_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
