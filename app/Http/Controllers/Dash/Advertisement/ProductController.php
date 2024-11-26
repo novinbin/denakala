@@ -150,7 +150,7 @@ class ProductController extends Controller
 
         $file = $request->file('file');
         $ext = $file->clientExtension();
-        $name = uniqid() . '_' . $ext;
+        $name = uniqid() . '_' .'.'.$ext;
 
         $file->move($path, $name);
 
