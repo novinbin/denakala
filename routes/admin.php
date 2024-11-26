@@ -199,7 +199,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:admin', 'role:admin|su
     Route::post('/adv-save-images',[ProductController::class,'storeAdvImages'])->name('adv-save-images');
     // edit product
     Route::get('/adv/edit/{adv}', [ProductController::class, 'edit'])->name('adv.edit');
-    Route::post('/adv/update/{?adv}', [ProductController::class, 'update'])->name('adv.update');
+    Route::post('/adv/update', [ProductController::class, 'update'])->name('adv.update');
 
 
 });

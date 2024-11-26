@@ -75,40 +75,39 @@ class ProductRepository
         $author = Auth::guard('admin')->id();
         $adv = Advertisement::findOrFail($request->adv);
 
+        dd($adv);
 
-        $adv = DB::transaction(function () use ($author, $adv, $request, $images) {
+        $adv->status = $request->status;
+        $adv->admin_id = $author;
+        $adv->title = $request->title;
+        $adv->province_id = $request->province;
+        $adv->city_id = $request->city;
+        $adv->keywords = $request->keywords;
+        $adv->images = $images;
+        $adv->description = $request->description;
+        $adv->seo_desc = $request->seo_desc;
+        $adv->adv_category_id = $request->advGroup;
+        $adv->slug = $request->slug;
+        $adv->video_link = $request->video_link;
+        $adv->advertiser_phone = $request->advertiser_phone;
+        $adv->owner = $request->owner;
+        $adv->address = $request->address;
+        $adv->website = $request->website;
+        $adv->email = $request->email;
+        $adv->eitaa = $request->eitaa;
+        $adv->rubika = $request->rubika;
+        $adv->instagram = $request->instagram;
+        $adv->telegram = $request->telegram;
 
-            // 'user_id' = Auth::id();
-            $adv->status = $request->status;
-            $adv->admin_id = $author;
-            $adv->title = $request->title;
-            $adv->province_id = $request->province;
-            $adv->city_id = $request->city;
-            $adv->keywords = $request->keywords;
-            $adv->images = $images;
-            $adv->description = $request->description;
-            $adv->seo_desc = $request->seo_desc;
-            $adv->adv_category_id = $request->advGroup;
-            $adv->slug = $request->slug;
-            $adv->video_link = $request->video_link;
-            $adv->advertiser_phone = $request->advertiser_phone;
-            $adv->owner = $request->owner;
-            $adv->address = $request->address;
-            $adv->website = $request->website;
-            $adv->email = $request->email;
-            $adv->eitaa = $request->eitaa;
-            $adv->rubika = $request->rubika;
-            $adv->instagram = $request->instagram;
-            $adv->telegram = $request->telegram;
-
-            $adv->save();
-
-            // $adv->published_at = $published_at;
-            // $current_product->categories()->sync($request->categories);
-
-        });
-
+        $adv->save();
         return $adv;
+
+
+        //$adv->'user_id' = Auth::id();
+        // $adv = DB::transaction(function () use ($author, $adv, $request, $images) {
+        // $adv->published_at = $published_at;
+        // $current_product->categories()->sync($request->categories);
+        // });
 
 
         // $realTimestamp = substr($request->published_at, 0, 10);

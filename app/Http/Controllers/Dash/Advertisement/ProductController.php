@@ -11,6 +11,7 @@ use App\Repositories\ProductRepository;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 
 class ProductController extends Controller
@@ -64,6 +65,10 @@ class ProductController extends Controller
     public function edit(Request $request)
     {
 
+
+
+
+
         try {
 
             // $category_ids[] = '';
@@ -91,28 +96,42 @@ class ProductController extends Controller
                         'provinces' => $provinces,'advGroups' => $current_adv_group]);
 
         } catch (\Exception $ex) {
-            return  $ex->getMessage();
+            //return  $ex->getMessage();
             return view('errors_custom.model_not_found');
         }
 
     }
 
-    public function update(ProductRequest $request)
+    public function update(Request $request)
     {
+
+        $request->validate([
+            'advGroup' => ['required'],
+            'title' => ['required',Rule::unique('products')->ignore($request->adv),'min:2','max:100'],
+            'province' => ['required'],
+            'city' => ['required'],
+            'description' => ['nullable', 'min:2', 'string', 'max:5000'],
+            'seo_desc' => ['nullable', 'min:2', 'string', 'max:150'],
+            'keywords' => ['required'],
+            'website' => ['url:https'],
+            'owner' => ['required','min:6','max:128'],
+            'advertiser_phone' => ['required','digits_between:2,20','numeric'],
+            'email' => ['email']
+        ]);
 
 
 
         try {
 
             // save images path in database
-            $images_path = [];
-            if ($request->has('images')) {
-                foreach ($request->input('images', []) as $file) {
-                    $images_path [] = 'app/public/uploads/' . $file;
-                }
-            } else {
-                $images_path = [];
-            }
+            //            $images_path = [];
+            //            if ($request->has('images')) {
+            //                foreach ($request->input('images', []) as $file) {
+            //                    $images_path [] = 'app/public/uploads/' . $file;
+            //                }
+            //            } else {
+            //                $images_path = [];
+            //            }
 
             $this->productRepository->update($request);
             session()->flash('success', __('messages.The_update_was_completed_successfully'));

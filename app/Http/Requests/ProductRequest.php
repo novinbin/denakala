@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ProductRequest extends FormRequest
 {
@@ -28,7 +29,7 @@ class ProductRequest extends FormRequest
 
         return [
             'advGroup' => ['required'],
-            'title' => ['required',Rule::unique('products')->ignore(Request()->id), 'min:2', 'max:100'],
+            'title' => ['required',Rule::unique('products')->ignore($this->request->get('adv')), 'min:2', 'max:100'],
             'province' => ['required'],
             'city' => ['required'],
             'description' => ['nullable', 'min:2', 'string', 'max:5000'],

@@ -16,7 +16,7 @@
 @section('dash_main_content')
     <div class="container-fluid">
         <div class="mx-auto my-5 bg-white row product-create-body">
-            <form action="{{ route('admin.adv.store') }}" method="post" enctype="multipart/form-data"
+            <form action="{{ route('admin.adv.update') }}" method="post" enctype="multipart/form-data"
                   id="advertisement-form">
                 @csrf
 
