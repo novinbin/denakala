@@ -1,9 +1,9 @@
 <h2 class="mb-1 text-lg">{{ __('messages.images') }}</h2>
-<div id="imageContainer" class="h-auto mb-3 py-10 w-full bg-white rounded-xl flex-wrap flex justify-center gap-6 bg-center">
+<div id="imageContainer" class="h-auto mb-3 py-10 w-100 bg-white rounded-xl d-flex  flex-wrap  justify-center gap-6 bg-center">
     @foreach($photos as $key => $photo)
         <div id="image_{{ $key }}">
-            <div onclick="deleteImage({{ $key }})" class="hover:bg-red-200/50 hover:backdrop-blur cursor-pointer rounded-xl bg-white/0 text w-52 h-52 absolute items-center justify-center flex text-5xl text-transparent hover:text-red-600 transition" style="user-select: none">حذف</div>
-            <img src="{{ asset($photo) }}" alt="photo" class="w-52 h-52 rounded-xl">
+            <div onclick="deleteImage({{ $key }})" class="rounded-xl  w-50 h-50 absolute d-flex" style="user-select: none">حذف</div>
+            <img src="{{ asset('storage'.$photo) }}" alt="photo" class="w-52 h-52 rounded-xl">
         </div>
     @endforeach
     <input hidden id="old_photos" name="old_photos" value="{{ json_encode($photos->toArray()) }}">
