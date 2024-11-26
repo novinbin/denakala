@@ -37,6 +37,9 @@ class ProductController extends Controller
         try {
 
 
+            // return $request;
+
+
             // save images path in database
             $images_path = [];
             if ($request->has('images')) {

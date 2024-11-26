@@ -21,6 +21,8 @@ class Advertisement extends Model
         'user_id',
         'title',
         'address',
+        'province_id',
+        'city_id',
         'description',
         'advertiser_phone',
         'email',

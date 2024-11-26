@@ -49,7 +49,7 @@ class ProductRepository
                 'owner' => $request->owner,
                 'address' => $request->address,
                 'email' => $request->email,
-                'webite' => $request->website,
+                'website' => $request->website,
                 'eitaa' => $request->eitaa,
                 'rubika' => $request->rubika,
                 'instagram' => $request->instagram,

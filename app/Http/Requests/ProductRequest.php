@@ -28,7 +28,7 @@ class ProductRequest extends FormRequest
 
         return [
             'advGroup' => ['required'],
-            'title' => ['required', 'min:2', 'max:100'],
+            'title' => ['required',Rule::unique('products')->ignore(Request()->id), 'min:2', 'max:100'],
             'province' => ['required'],
             'city' => ['required'],
             'description' => ['nullable', 'min:2', 'string', 'max:5000'],
