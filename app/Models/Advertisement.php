@@ -54,12 +54,12 @@ class Advertisement extends Model
         return 'slug';
     }
 
-    public function getSlugOptions(): SlugOptions
-    {
-        return SlugOptions::create()
-            ->generateSlugsFrom('title_persian')
-            ->saveSlugsTo('slug');
-    }
+    //    public function getSlugOptions(): SlugOptions
+    //    {
+    //        return SlugOptions::create()
+    //            ->generateSlugsFrom('title')
+    //            ->saveSlugsTo('slug');
+    //    }
 
     // for many to many with categories table
     public function categories()
@@ -81,18 +81,11 @@ class Advertisement extends Model
         return $this->hasMany(Comment::class, 'product_id');
     }
 
-
     // one product belongs to many  users
     public function user()
     {
         return $this->belongsToMany(User::class, 'product_user');
     }
-
-    public function tags()
-    {
-        return $this->belongsToMany(Tag::class);
-    }
-
 
     public static function search($search)
     {
@@ -103,6 +96,14 @@ class Advertisement extends Model
                 ->orWhere('title_persian', 'like', '%' . $search . '%')
                 ->orWhere('title_english', 'like', '%' . $search . '%');
     }
+
+
+    //    public function tags()
+    //    {
+    //        return $this->belongsToMany(Tag::class);
+    //    }
+
+
 
 
 }

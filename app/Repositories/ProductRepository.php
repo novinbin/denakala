@@ -19,54 +19,53 @@ class ProductRepository
     public function store($request, $images)
     {
 
-        $thumbImagePatch = '';
-        $createdProduct = null;
-        $author = Auth::guard('admin')->id();
-
-
-        $realTimestamp = substr($request->published_at, 0, 10);
-        $published_at = date("Y-m-d H:i:s", (int)$realTimestamp);
-
+        // $thumbImagePatch = '';
+        // $realTimestamp = substr($request->published_at, 0, 10);
+        // $published_at = date("Y-m-d H:i:s", (int)$realTimestamp);
+        // $published_at,
         // dd($request->all());
+
+
         // for save product public info
-        DB::transaction(function () use ($author, $images, $published_at, $request) {
 
-            $createdProduct = Advertisement::create([
-                'status' => $request->status,
-                'admin_id' => $author,
-                'user_id' => Auth::id(),
-                'title' => $request->title,
-                'keywords' => $request->keywords,
-                'images' => $images,
-                'province_id' => $request->province,
-                'city_id' => $request->city,
-                'description' => $request->description,
-                'seo_desc' => $request->seo_desc,
-                'adv_category_id' => $request->advGroup,
-                'slug' => $request->slug,
-                'video_link' => $request->video_link,
-                'advertiser_phone' => $request->advertiser_phone,
-                'owner' => $request->owner,
-                'address' => $request->address,
-                'email' => $request->email,
-                'website' => $request->website,
-                'eitaa' => $request->eitaa,
-                'rubika' => $request->rubika,
-                'instagram' => $request->instagram,
-                'telegram' => $request->telegram,
-            ]);
+        $author = Auth::guard('admin')->id();
+        $createdProduct = Advertisement::create([
+            'status' => $request->status,
+            'admin_id' => $author,
+            'user_id' => Auth::id(),
+            'title' => $request->title,
+            'keywords' => $request->keywords,
+            'images' => $images,
+            'province_id' => $request->province,
+            'city_id' => $request->city,
+            'description' => $request->description,
+            'seo_desc' => $request->seo_desc,
+            'adv_category_id' => $request->advGroup,
+            'slug' => $request->slug,
+            'video_link' => $request->video_link,
+            'advertiser_phone' => $request->advertiser_phone,
+            'owner' => $request->owner,
+            'address' => $request->address,
+            'email' => $request->email,
+            'website' => $request->website,
+            'eitaa' => $request->eitaa,
+            'rubika' => $request->rubika,
+            'instagram' => $request->instagram,
+            'telegram' => $request->telegram,
+        ]);
 
+        return $createdProduct;
 
-            // for save product thumbnail image
-            //            if ($request->hasFile('thumbnail_image')) {
-            //
-            //                if (!$this->uploadImages($createdProduct, $request)) {
-            //                    session()->flash('warning', __('messages.An_error_occurred_while_updated'));
-            //                    return redirect()->back();
-            //                }
-            //            }
-            return $createdProduct;
-        });
+        // DB::transaction(function () use ($author, $images,  $request) {
+        // for save product thumbnail image
+        //            if ($request->hasFile('thumbnail_image')) {
+        //
+        //                if (!$this->uploadImages($createdProduct, $request)) {
+        //                    session()->flash('warning', __('messages.An_error_occurred_while_updated'));
+        //                    return redirect()->back();
+        //                }
+        //            }
+        // });
     }
 
     public function update($request, $images)
@@ -74,8 +73,8 @@ class ProductRepository
 
         $author = Auth::guard('admin')->id();
         $adv = Advertisement::findOrFail($request->adv);
+        $slug = str_replace('-', ' ', $request->title);
 
-        dd($adv);
 
         $adv->status = $request->status;
         $adv->admin_id = $author;
@@ -87,7 +86,7 @@ class ProductRepository
         $adv->description = $request->description;
         $adv->seo_desc = $request->seo_desc;
         $adv->adv_category_id = $request->advGroup;
-        $adv->slug = $request->slug;
+        $adv->slug = $slug;
         $adv->video_link = $request->video_link;
         $adv->advertiser_phone = $request->advertiser_phone;
         $adv->owner = $request->owner;
@@ -108,8 +107,6 @@ class ProductRepository
         // $adv->published_at = $published_at;
         // $current_product->categories()->sync($request->categories);
         // });
-
-
         // $realTimestamp = substr($request->published_at, 0, 10);
         // $published_at = date("Y-m-d H:i:s", (int)$realTimestamp);
 
