@@ -124,16 +124,16 @@ class ProductController extends Controller
         try {
 
             // save images path in database
-            //            $images_path = [];
-            //            if ($request->has('images')) {
-            //                foreach ($request->input('images', []) as $file) {
-            //                    $images_path [] = 'app/public/uploads/' . $file;
-            //                }
-            //            } else {
-            //                $images_path = [];
-            //            }
+            $images_path = [];
+            if ($request->has('images')) {
+                foreach ($request->input('images', []) as $file) {
+                    $images_path [] = 'app/public/uploads/' . $file;
+                }
+            } else {
+                $images_path = [];
+            }
 
-            $this->productRepository->update($request);
+            $this->productRepository->update($request,$images_path);
             session()->flash('success', __('messages.The_update_was_completed_successfully'));
             return redirect()->route('admin.adv.index');
 
