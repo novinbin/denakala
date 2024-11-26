@@ -52,6 +52,7 @@ class ProductRepository
             'rubika' => $request->rubika,
             'instagram' => $request->instagram,
             'telegram' => $request->telegram,
+
         ]);
 
         return $createdProduct;

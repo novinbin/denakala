@@ -3,7 +3,7 @@
     @foreach($photos as $key => $photo)
         <div id="image_{{ $key }}">
             <div onclick="deleteImage({{ $key }})" class="hover:bg-red-200/50 hover:backdrop-blur cursor-pointer rounded-xl bg-white/0 text w-52 h-52 absolute items-center justify-center flex text-5xl text-transparent hover:text-red-600 transition" style="user-select: none">حذف</div>
-            <img src="{{ $photo }}" alt="photo" class="w-52 h-52 rounded-xl">
+            <img src="{{ asset($photo) }}" alt="photo" class="w-52 h-52 rounded-xl">
         </div>
     @endforeach
     <input hidden id="old_photos" name="old_photos" value="{{ json_encode($photos->toArray()) }}">

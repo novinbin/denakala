@@ -332,8 +332,8 @@
                             </div>
 
                             <div class="mt-5 col">
-                                @if($adv->photos != null)
-                                    @include('admin_end.advertisement.photos' ,['photos' => $adv->photos])
+                                @if($adv->images != null)
+                                    @include('admin_end.advertisement.photos' ,['photos' => $adv->images])
                                 @endif
                             </div>
 
