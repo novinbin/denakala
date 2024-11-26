@@ -602,6 +602,7 @@ return [
     'select_category_required' => 'فیلد دسته بندی الزامی است',
     'dear_user_your_account_has_not_been_activated' => 'کاربر گرامی حساب کاربری شما فعال نشده است',
     'sub_categories' => 'زیر مجموعه ها',
+    'no_sub_categories' => 'زیر مجموعه ندارد',
     'there_is_no_category_for_display' => 'دسته بندی برای نمایش وجود ندارد',
     'packages' => 'اشتراک ها',
     'packages_management' => 'مدیریت اشتراک ها',

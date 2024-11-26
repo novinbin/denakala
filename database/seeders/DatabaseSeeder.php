@@ -244,21 +244,21 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $cat_1_1 = AdvCategory::create([
-            'title' => 'دسته بندی یک',
+            'title' => 'دسته بندی یک یک',
             'show_in_menu' => 1,
             'status' => 1,
             'parent_id' => $cat_1->id,
         ]);
 
         $cat_1_2 = AdvCategory::create([
-            'title' => 'دسته بندی یک',
+            'title' => 'دسته بندی یک دو',
             'show_in_menu' => 1,
             'status' => 1,
             'parent_id' => $cat_1->id,
         ]);
 
         $cat_1_3 = AdvCategory::create([
-            'title' => 'دسته بندی یک',
+            'title' => 'دسته بندی یک سه',
             'show_in_menu' => 1,
             'status' => 1,
             'parent_id' => $cat_1->id,

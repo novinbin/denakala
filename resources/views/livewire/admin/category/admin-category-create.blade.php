@@ -2,9 +2,9 @@
     @section('dash_page_title')
         {{ __('messages.categories') }}
     @endsection
-   {{--@section('breadcrumb')
-        {{ Breadcrumbs::render('admin.category.index') }}
-    @endsection--}}
+    {{--@section('breadcrumb')
+         {{ Breadcrumbs::render('admin.category.index') }}
+     @endsection--}}
     <div class="container-fluid">
 
 
@@ -65,15 +65,15 @@
                             @enderror
                         </div>
 
-                       {{-- <div class="mb-3 mt-3">
-                            <label for="parent" class="form-label">انتخاب دسته بندی والد</label>
-                            <select class="form-control" wire:model="parent" id="parent">
-                                <option value="null">فاقد دسته بندی</option>
-                                @foreach ($categories as $item)
-                                    <option value="{{ $item->id }}">{{ $item->title }}</option>
-                                @endforeach
-                            </select>
-                        </div>--}}
+                        {{-- <div class="mb-3 mt-3">
+                             <label for="parent" class="form-label">انتخاب دسته بندی والد</label>
+                             <select class="form-control" wire:model="parent" id="parent">
+                                 <option value="null">فاقد دسته بندی</option>
+                                 @foreach ($categories as $item)
+                                     <option value="{{ $item->id }}">{{ $item->title }}</option>
+                                 @endforeach
+                             </select>
+                         </div>--}}
 
                     </div>
 
@@ -91,7 +91,6 @@
         </div>
 
 
-
         <div class="row d-flex justify-content-center search-category-section">
             <div class="col">
                 <div class="mb-3 mt-3">
@@ -106,9 +105,9 @@
                 <table class="table table-striped table-responsive">
                     <thead class="border-bottom-3 border-top-3">
                     <tr class="text-center">
-                        <th >{{ __('messages.id') }} </th>
+                        <th>{{ __('messages.id') }} </th>
                         <th>{{ __('messages.name')}}</th>
-                    {{--<th>{{ __('messages.category_parent')}}</th>--}}
+                        {{--<th>{{ __('messages.category_parent')}}</th>--}}
                         <th>{{ __('messages.sub_categories') }}</th>
                         <th>{{ __('messages.status')}}</th>
                         <th>{{ __('messages.operation')}}</th>
@@ -117,12 +116,13 @@
                     <tbody>
                     @foreach($categories as $category)
                         <tr class="text-center">
-                            <td >{{ $category->id }}</td>
+                            <td>{{ $category->id }}</td>
                             <td>{{ $category->title }}</td>
-                        {{--<td>{{ $category->parent_id ? $category->parent->title_persian : __('messages.main_category') }}</td>--}}
-                            <td><a href="{{ route('admin.sub.category.create',$category->id) }}"  class="mx-4">
-                                    <i class="">{{ __('messages.sub_categories') }}</i>
-                                </a>
+                            {{--<td>{{ $category->parent_id ? $category->parent->title_persian : __('messages.main_category') }}</td>--}}
+                            <td>
+                                    <a href="{{ route('admin.sub.category.create',$category->id) }}" class="mx-4">
+                                        <i class="">{{ __('messages.sub_categories') }}</i>
+                                    </a>
                             </td>
                             <td>
                                 <a href="#" wire:click.prevent="changeState({{ $category->id }})"
@@ -131,15 +131,16 @@
                                 </a>
                             </td>
 
-                          {{--  <td><a href="#" wire:click.prevent="detachCategory({{ $category->id }})" class="mx-4">
-                                    <i class="fa fa-unlink"></i>
-                                </a>
-                            </td>--}}
+                            {{--  <td><a href="#" wire:click.prevent="detachCategory({{ $category->id }})" class="mx-4">
+                                      <i class="fa fa-unlink"></i>
+                                  </a>
+                              </td>--}}
                             <td>
                                 <a href="{{ route('admin.category.edit',['id'=>$category->id]) }}" class="mx-4">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <button class="border border-0 bg-transparent"  wire:click="deleteConfirmation({{ $category->id }})">
+                                <button class="border border-0 bg-transparent"
+                                        wire:click="deleteConfirmation({{ $category->id }})">
                                     <i class="fas fa-trash "></i>
                                 </button>
                             </td>
@@ -150,7 +151,6 @@
 
             </div>
         </div>
-
 
 
         <div class="row d-flex justify-content-center bg-white my-4">
@@ -220,38 +220,38 @@
                 cancelButtonText: 'خیر',
             }).then((result) => {
                 if (result.isConfirmed) {
-                   // Livewire.emit('deleteConfirmed')
-                   // Livewire.on('deleteConfirmed')
+                    // Livewire.emit('deleteConfirmed')
+                    // Livewire.on('deleteConfirmed')
                     Livewire.dispatch('deleteConfirmed')
                 }
             });
         })
     </script>
     <script>
-       /* const Toast = Swal.mixin({
-            toast: true,
-            position: 'top',
-            showConfirmButton: false,
-            showCloseButton: true,
-            timer: 5000,
-            timerProgressBar: true,
-            // didOpen: (toast) => {
-            //     toast.addEventListener('mouseenter', Swal.stopTimer)
-            //     toast.addEventListener('mouseleave', Swal.resumeTimer)
-            // }
-        });*/
+        /* const Toast = Swal.mixin({
+             toast: true,
+             position: 'top',
+             showConfirmButton: false,
+             showCloseButton: true,
+             timer: 5000,
+             timerProgressBar: true,
+             // didOpen: (toast) => {
+             //     toast.addEventListener('mouseenter', Swal.stopTimer)
+             //     toast.addEventListener('mouseleave', Swal.resumeTimer)
+             // }
+         });*/
 
-       const Toast = Swal.mixin({
-           toast: true,
-           position: 'center',
-           iconColor: 'white',
-           customClass: {
-               popup: 'colored-toast',
-           },
-           showConfirmButton: false,
-           timer: 1500,
-           timerProgressBar: true,
-       })
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'center',
+            iconColor: 'white',
+            customClass: {
+                popup: 'colored-toast',
+            },
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+        })
 
         window.addEventListener('show-result', ({detail: {type, message}}) => {
             Toast.fire({
@@ -262,12 +262,12 @@
 
         @if(session()->has('warning'))
         Toast.fire({
-            icon: 'warning' ,
+            icon: 'warning',
             title: '{{ session()->get('warning') }}'
         })
         @elseif(session()->has('success'))
         Toast.fire({
-            icon: 'success' ,
+            icon: 'success',
             title: '{{ session()->get('success') }}'
         })
         @endif
