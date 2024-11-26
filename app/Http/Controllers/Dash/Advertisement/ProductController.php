@@ -38,9 +38,6 @@ class ProductController extends Controller
         try {
 
 
-            // return $request;
-
-
             // save images path in database
             $images_path = [];
             if ($request->has('images')) {
@@ -48,7 +45,6 @@ class ProductController extends Controller
                     $images_path [] = '/public/uploads/' . $file;
                 }
             }
-
 
             $this->productRepository->store($request, $images_path);
             session()->flash('success', __('messages.New_record_saved_successfully'));
@@ -140,20 +136,15 @@ class ProductController extends Controller
     public function storeAdvImages(Request $request)
     {
 
-        // return $request->all();
 
         $path = storage_path('app/public/uploads');
-
         if (!file_exists($path)) {
             mkdir($path, 0777, true);
         }
-
         $file = $request->file('file');
         $ext = $file->clientExtension();
-        $name = uniqid() . '_' .'.'.$ext;
-
+        $name = uniqid().'.'.$ext;
         $file->move($path, $name);
-
         return response()->json([
             'name' => $name,
             'original_name' => $name,
