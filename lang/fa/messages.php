@@ -609,4 +609,6 @@ return [
     'items' => 'آیتم ها',
     'there_is_no_child' => 'زیر مجموعه ای ندارد',
     'there_is_no_ad_grouping' => 'گروه بندی آگهی وجود ندارد',
+    'images_are_uploaded_automatically' => 'تصاویر  مورد نظر را انتخاب ، سپس به صورت خودکار آپلود میشوند',
+    'before_uploading_images_make_sure_that_the_starred_fields_are_complete' => 'قبل از آپلود تصاویر از کامل بودن فیلد های ستاره دار مطمئن شوید',
 ];

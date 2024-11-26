@@ -5,6 +5,8 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Admin;
 use App\Models\AdvCategory;
+use App\Models\City;
+use App\Models\Province;
 use App\Models\Subscription;
 use App\Models\SubscriptionDuration;
 use App\Models\User;
@@ -242,28 +244,24 @@ class DatabaseSeeder extends Seeder
             'show_in_menu' => 1,
             'status' => 1,
         ]);
-
         $cat_1_1 = AdvCategory::create([
             'title' => 'دسته بندی یک یک',
             'show_in_menu' => 1,
             'status' => 1,
             'parent_id' => $cat_1->id,
         ]);
-
         $cat_1_2 = AdvCategory::create([
             'title' => 'دسته بندی یک دو',
             'show_in_menu' => 1,
             'status' => 1,
             'parent_id' => $cat_1->id,
         ]);
-
         $cat_1_3 = AdvCategory::create([
             'title' => 'دسته بندی یک سه',
             'show_in_menu' => 1,
             'status' => 1,
             'parent_id' => $cat_1->id,
         ]);
-
         $cat_11 = AdvCategory::create([
             'title' => 'تست یک',
             'show_in_menu' => 1,
@@ -283,29 +281,24 @@ class DatabaseSeeder extends Seeder
             'show_in_menu' => 1,
             'status' => 1,
         ]);
-
         $cat_2_1 = AdvCategory::create([
             'title' => 'دسته بندی دو یک',
             'show_in_menu' => 1,
             'status' => 1,
             'parent_id' => $cat_2->id,
         ]);
-
         $cat_2_2 = AdvCategory::create([
             'title' => 'دسته بندی دو دو',
             'show_in_menu' => 1,
             'status' => 1,
             'parent_id' => $cat_2->id,
         ]);
-
         $cat_2_3 = AdvCategory::create([
             'title' => 'دسته بندی دو سه',
             'show_in_menu' => 1,
             'status' => 1,
             'parent_id' => $cat_2->id,
         ]);
-
-
         $cat_21 = AdvCategory::create([
             'title' => 'تست یک',
             'show_in_menu' => 1,
@@ -319,37 +312,30 @@ class DatabaseSeeder extends Seeder
             'parent_id' => $cat_2_3->id,
         ]);
 
-
-
         // lv 3
         $cat_3 = AdvCategory::create([
             'title' => 'دسته بندی سه',
             'show_in_menu' => 1,
             'status' => 1,
         ]);
-
         $cat_3_1 = AdvCategory::create([
             'title' => 'دسته بندی سه یک',
             'show_in_menu' => 1,
             'status' => 1,
             'parent_id' => $cat_3->id,
         ]);
-
         $cat_3_2 = AdvCategory::create([
             'title' => 'دسته بندی سه دو',
             'show_in_menu' => 1,
             'status' => 1,
             'parent_id' => $cat_3->id,
         ]);
-
         $cat_3_3 = AdvCategory::create([
             'title' => 'دسته بندی سه سه',
             'show_in_menu' => 1,
             'status' => 1,
             'parent_id' => $cat_3->id,
         ]);
-
-
         $cat_31 = AdvCategory::create([
             'title' => 'تست یک',
             'show_in_menu' => 1,
@@ -362,6 +348,91 @@ class DatabaseSeeder extends Seeder
             'status' => 1,
             'parent_id' => $cat_3_3->id,
         ]);
+
+
+
+
+        // create province
+        $province_1 = Province::create([
+            'name' => 'تهران'
+        ]);
+
+        $city_11 = City::create([
+            'name' => 'تهران',
+            'province_id' => $province_1->id,
+        ]);
+
+        $city_12 = City::create([
+            'name' => 'شهر ری',
+            'province_id' => $province_1->id,
+        ]);
+
+        $city_13 = City::create([
+            'name' => 'اسلام شهر',
+            'province_id' => $province_1->id,
+        ]);
+
+        ////
+        $province_2 = Province::create([
+            'name' => 'کرمان',
+        ]);
+        $city_21 = City::create([
+            'name' => 'کرمان',
+            'province_id' => $province_2->id,
+        ]);
+        $city_22 = City::create([
+            'name' => 'بم',
+            'province_id' => $province_2->id,
+        ]);
+        $city_23 = City::create([
+            'name' => 'بافت',
+            'province_id' => $province_2->id,
+        ]);
+
+
+
+        ////
+        $province_3 = Province::create([
+            'name' => 'فارس',
+        ]);
+
+        $city_31 = City::create([
+            'name' => 'شیراز',
+            'province_id' => $province_3->id,
+        ]);
+
+        $city_32 = City::create([
+            'name' => 'جهرم',
+            'province_id' => $province_3->id,
+        ]);
+
+        $city_33 = City::create([
+            'name' => 'برازجان',
+            'province_id' => $province_3->id,
+        ]);
+
+
+        ////
+        $province_4 = Province::create([
+            'name' => 'اصفهان',
+        ]);
+
+        $city_41 = City::create([
+            'name' => 'آران و بیدگل',
+            'province_id' => $province_4->id,
+        ]);
+        $city_42 = City::create([
+            'name' => 'ابریشم',
+            'province_id' => $province_4->id,
+        ]);
+        $city_43 = City::create([
+            'name' => 'اصفهان',
+            'province_id' => $province_4->id,
+        ]);
+
+
+
+
 
 
     }

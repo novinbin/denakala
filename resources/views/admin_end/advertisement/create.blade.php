@@ -291,6 +291,7 @@
 
                             <!-- image gallery adv  -->
                             <div class="mt-5  col">
+                            <label class="mb-5">تصاویر</label>
                              <!-- upload images using dropzone js -->
                              <div class="advImages needsclick dropzone d-flex flex-wrap" style="background-color:transparent"  id="document-dropzone">
                                  <div class="dz-message  d-flex flex-column" id="dropzoneClick">
@@ -301,6 +302,10 @@
                                          <span class="text text-wrap lh-sm">تصاویر خود را در اینجا آپلود کنید</span>
                                      </div>
                                  </div>
+                             </div>
+                             <div class="my-2">
+                                 <p class="text-danger">{{ __('messages.before_uploading_images_make_sure_that_the_starred_fields_are_complete') }}</p>
+                                 <p>{{ __('messages.images_are_uploaded_automatically') }}</p>
                              </div>
 
                             </div>
@@ -441,6 +446,7 @@
                 thumbnailHeight : 120,
                 acceptedFiles: '.jpg, .jpeg ,.png',
                 addRemoveLinks: true,
+                // autoProcessQueue:false,
                 dictDefaultMessage: 'تصاویر خود را اینجا آپلود کنید',
                 headers: {
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
@@ -474,15 +480,15 @@
             }
 
 
-            $(document).ready(function (){
-
-                $('#dropzoneClick').on('click',function ()
-                {
-                     $('img-dropzone').hide();
-                     $('text-dropzone').hide();
-
-                });
-            })
+            // $(document).ready(function (){
+            //
+            //     $('#dropzoneClick').on('click',function ()
+            //     {
+            //          $('img-dropzone').hide();
+            //          $('text-dropzone').hide();
+            //
+            //     });
+            // })
 
 
 
