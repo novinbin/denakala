@@ -42,7 +42,7 @@ class ProductController extends Controller
             $images_path = [];
             if ($request->has('images')) {
                 foreach ($request->input('images', []) as $file) {
-                    $images_path [] = '/public/uploads/' . $file;
+                    $images_path [] = '/uploads/' . $file;
                 }
             }
 
@@ -117,7 +117,7 @@ class ProductController extends Controller
             $images_path = [];
             if ($request->has('images')) {
                 foreach ($request->input('images', []) as $file) {
-                    $images_path [] = '/public/uploads/' . $file;
+                    $images_path [] = '/uploads/' . $file;
                 }
             }
 
