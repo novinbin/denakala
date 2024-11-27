@@ -108,43 +108,40 @@ class ProductController extends Controller
             'description' => ['nullable', 'min:2', 'string', 'max:5000'],
             'seo_desc' => ['nullable', 'min:2', 'string', 'max:150'],
             'keywords' => ['required'],
-            'website' => ['nullable','url:https'],
+            'website' => ['nullable', 'url:https'],
             'owner' => ['required', 'min:6', 'max:128'],
             'advertiser_phone' => ['required', 'digits_between:2,20', 'numeric'],
-            'email' => ['nullable','email']
+            'email' => ['nullable', 'email']
         ]);
 
 
         try {
 
             $adv = Advertisement::find($request->adv);
-
-
-
-
             $images_path = [];
-            if($request->has('images')){
+            if ($request->has('images')) {
 
-                // save images path in database
-                if ($request->has('images')) {
-                    foreach ($request->input('images', []) as $file) {
-                        $images_path [] = '/uploads/' . $file;
-                    }
-                }
+                // save new images path in image_path array
+//                foreach ($request->input('images', []) as $file) {
+//                    $images_path [] = '/uploads/' . $file;
+//                }
+
+
+
+
                 // merge old images with new images in array
                 // and save into database
-
-
-                $old_photos = [];
                 // convert json into collection
-                $old_photos = collect(json_decode($request->old_photos,true));
+
+                // $old_photos = [];
+                $old_photos = collect(json_decode($request->old_photos, true));
 
 
-                // delete old photo from database & file
+                // delete old photo from database & storage
                 // if user deleted
-                foreach ($adv->images as $key => $photo){
-                    if(!$old_photos->has($key) || $old_photos[$key] === null ){
-                        $path = env('app_url').$key;
+                foreach ($adv->images as $key => $photo) {
+                    if (!$old_photos->has($key) || $old_photos[$key] === null) {
+                        $path = env('app_url') . $key;
                         Storage::disk('public')->delete($path);
                         // delete image from images collection
                         $adv->images->forget($key);
@@ -152,8 +149,6 @@ class ProductController extends Controller
                 }
 
             }
-
-
 
 
             ////
@@ -204,7 +199,7 @@ class ProductController extends Controller
         }
         $file = $request->file('file');
         $ext = $file->clientExtension();
-        $name = uniqid().'.'.$ext;
+        $name = uniqid() . '.' . $ext;
         $file->move($path, $name);
         return response()->json([
             'name' => $name,
