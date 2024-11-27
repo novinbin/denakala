@@ -101,7 +101,7 @@ class ProductController extends Controller
         // dd($request->all());
 
         $request->validate([
-            'advGroup' => ['required'],
+            'advGroup' => ['nullable'],
             'title' => ['required', Rule::unique('products')->ignore($request->adv), 'min:2', 'max:100'],
             'province' => ['required'],
             'city' => ['required'],
