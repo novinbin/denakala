@@ -124,9 +124,12 @@ class ProductController extends Controller
             }
             // merge old images with new images in array
             // and save into database
-            $old_images = [];
-            $old_images = $request->old_images;
-            dd($old_images);
+
+
+            $old_photos = [];
+            // convert json into collection
+            $old_photos =  collect(json_decode($request->old_photos,true));
+            
 
 
             $this->productRepository->update($request, $images_path);
