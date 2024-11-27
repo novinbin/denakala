@@ -96,6 +96,8 @@ class ProductController extends Controller
     public function update(Request $request)
     {
 
+        // dd($request->all());
+
         $request->validate([
             'advGroup' => ['required'],
             'title' => ['required', Rule::unique('products')->ignore($request->adv), 'min:2', 'max:100'],

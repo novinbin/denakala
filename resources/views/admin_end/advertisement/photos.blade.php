@@ -19,7 +19,6 @@
         let old_photos = document.getElementById('old_photos');
         let array = JSON.parse(old_photos.value);
         delete array[key];
-        console.log(old_photos.value);
         old_photos.value = JSON.stringify(array);
     }
 </script>
