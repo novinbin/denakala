@@ -122,9 +122,9 @@ class ProductController extends Controller
             if ($request->has('images')) {
 
                 // save new images path in image_path array
-                //    foreach ($request->input('images', []) as $file) {
-                //        $images_path [] = '/uploads/' . $file;
-                //    }
+                foreach ($request->input('images', []) as $file) {
+                    $images_path [] = '/uploads/' . $file;
+                }
 
                 // $old_photos = [];
                 $old_photos = collect(json_decode($request->old_photos, true));
@@ -140,7 +140,6 @@ class ProductController extends Controller
             }
 
             $old_photos = collect(json_decode($request->old_photos, true));
-            // dd( $old_photos,$adv->images );
             foreach ($adv->images as $key => $photo) {
                 if (!$old_photos->has($key) || $old_photos[$key] === null) {
                     // $path = env('app_url').'/storage/public' . $photo;
@@ -148,13 +147,10 @@ class ProductController extends Controller
                     $adv->images->forget($key);
                 }
             }
+
             $images_path = $adv->images;
-
-
-            ////
             $author = Auth::guard('admin')->id();
             $slug = str_replace('-', ' ', $request->title);
-            ////
             $adv->status = $request->status;
             $adv->admin_id = $author;
             $adv->title = $request->title;
