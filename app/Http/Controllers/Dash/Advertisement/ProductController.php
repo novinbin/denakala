@@ -131,8 +131,7 @@ class ProductController extends Controller
                 foreach ($adv->images as $key => $photo) {
                     if (!$old_photos->has($key) || $old_photos[$key] === null) {
                         // $path = env('app_url').'/storage/public' . $photo;
-                        $path = '/storage/public' . $photo;
-                        Storage::disk('public')->delete($path);
+                        Storage::disk('public')->delete($photo);
                         $adv->images->forget($key);
                     }
                 }
@@ -145,8 +144,7 @@ class ProductController extends Controller
             foreach ($adv->images as $key => $photo) {
                 if (!$old_photos->has($key) || $old_photos[$key] === null) {
                     // $path = env('app_url').'/storage/public' . $photo;
-                    $path = '/storage/public' . $photo;
-                    Storage::disk('public')->delete($path);
+                    Storage::disk('public')->delete($photo);
                     $adv->images->forget($key);
                 }
             }
