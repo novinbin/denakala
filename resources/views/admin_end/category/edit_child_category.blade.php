@@ -20,7 +20,7 @@
                 <div class="accordion-header p-4 item-category-title" id="headingOne">
                     <div class="ms-5 p-2 d-flex justify-content-start">
                         <div class="mx-2">
-                            <input {{ $category->id =   }} type="radio" class="mt-1" name="advGroup" value="{{ $category->id }}">
+                            <input {{ $category->id == $adv_cat ? 'checked' : ''  }} type="radio" class="mt-1" name="advGroup" value="{{ $category->id }}">
                         </div>
                         <div>
                             {{ $category->title }}
