@@ -106,10 +106,10 @@ class ProductController extends Controller
             'description' => ['nullable', 'min:2', 'string', 'max:5000'],
             'seo_desc' => ['nullable', 'min:2', 'string', 'max:150'],
             'keywords' => ['required'],
-            'website' => ['url:https'],
+            'website' => ['nullable','url:https'],
             'owner' => ['required', 'min:6', 'max:128'],
             'advertiser_phone' => ['required', 'digits_between:2,20', 'numeric'],
-            'email' => ['email']
+            'email' => ['nullable','email']
         ]);
 
 
@@ -124,6 +124,9 @@ class ProductController extends Controller
             }
             // merge old images with new images in array
             // and save into database
+            $old_images = [];
+            $old_images = $request->old_images;
+            dd($old_images);
 
 
             $this->productRepository->update($request, $images_path);
