@@ -20,9 +20,7 @@
                   id="advertisement-form">
                 @csrf
 
-
                 <input type="hidden" name="adv" value="{{ $adv->id }}">
-
 
                 <div class="row">
                     {{--   advertisement fields  --}}
@@ -294,7 +292,7 @@
                             </div>
                             @enderror
                         </div>
-                        
+
                         <!-- image upload -->
                         <div class="mt-5  col">
                             <label class="mb-5">تصاویر</label>

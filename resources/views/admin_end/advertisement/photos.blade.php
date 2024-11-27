@@ -1,4 +1,4 @@
-<h2 class="mb-1 text-lg">{{ __('messages.images') }}</h2>
+<label class="mb-4">{{ __('messages.images') }}</label>
 
 <div id="imageContainer" class="h-auto mb-3 row row-cols-1 row-cols-md-4 row-cols-lg-4 row-cols-xl-4 g-4">
     @foreach($photos as $key => $photo)
