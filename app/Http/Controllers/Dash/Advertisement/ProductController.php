@@ -122,6 +122,8 @@ class ProductController extends Controller
                     $images_path [] = '/uploads/' . $file;
                 }
             }
+            // merge old images with new images in array
+            // and save into database
 
 
             $this->productRepository->update($request, $images_path);
