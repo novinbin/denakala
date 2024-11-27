@@ -10,7 +10,9 @@ use App\Models\Province;
 use App\Repositories\ProductRepository;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 
@@ -115,6 +117,7 @@ class ProductController extends Controller
 
         try {
 
+            $adv = Advertisement::find($request->adv);
             // save images path in database
             $images_path = [];
             if ($request->has('images')) {
@@ -129,10 +132,49 @@ class ProductController extends Controller
             $old_photos = [];
             // convert json into collection
             $old_photos =  collect(json_decode($request->old_photos,true));
+
+
+            // delete old photo from database & file
+            // if user deleted
+            foreach ($adv->images as $key => $photo){
+                if(!$old_photos->has($key) || $old_photos[$key] === null ){
+                    $path = env('app_url').$key;
+                    Storage::disk('public')->delete($path);
+                    // delete image from images collection
+                    $adv->images->forget($key);
+                }
+            }
+
+
+
+            ////
+            $author = Auth::guard('admin')->id();
+            $slug = str_replace('-', ' ', $request->title);
+            ////
+            $adv->status = $request->status;
+            $adv->admin_id = $author;
+            $adv->title = $request->title;
+            $adv->province_id = $request->province;
+            $adv->city_id = $request->city;
+            $adv->keywords = $request->keywords;
+            $adv->images = $images_path;
+            $adv->description = $request->description;
+            $adv->seo_desc = $request->seo_desc;
+            $adv->adv_category_id = $request->advGroup;
+            $adv->slug = $slug;
+            $adv->video_link = $request->video_link;
+            $adv->advertiser_phone = $request->advertiser_phone;
+            $adv->owner = $request->owner;
+            $adv->address = $request->address;
+            $adv->website = $request->website;
+            $adv->email = $request->email;
+            $adv->eitaa = $request->eitaa;
+            $adv->rubika = $request->rubika;
+            $adv->instagram = $request->instagram;
+            $adv->telegram = $request->telegram;
+            $adv->save();
             
 
-
-            $this->productRepository->update($request, $images_path);
             session()->flash('success', __('messages.The_update_was_completed_successfully'));
             return redirect()->route('admin.adv.index');
 
