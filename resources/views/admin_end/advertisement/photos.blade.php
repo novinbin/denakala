@@ -1,4 +1,5 @@
 <h2 class="mb-1 text-lg">{{ __('messages.images') }}</h2>
+
 <div id="imageContainer" class="h-auto mb-3 row row-cols-1 row-cols-md-4 row-cols-lg-4 row-cols-xl-4 g-4">
     @foreach($photos as $key => $photo)
         <div class="card" id="image_{{ $key }}" style="width: 18rem;">
@@ -12,11 +13,13 @@
 </div>
 
 <script>
-    function deleteImage(key) {
+    function deleteImage(key)
+    {
         document.getElementById('imageContainer').removeChild(document.getElementById('image_' + String(key)));
         let old_photos = document.getElementById('old_photos');
         let array = JSON.parse(old_photos.value);
         delete array[key];
+        console.log(old_photos.value);
         old_photos.value = JSON.stringify(array);
     }
 </script>
