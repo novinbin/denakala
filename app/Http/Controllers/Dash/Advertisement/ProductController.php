@@ -115,7 +115,7 @@ class ProductController extends Controller
                     $images_path [] = '/uploads/' . $file;
                 }
 
-                // $old_photos = [];
+
                 $old_photos = collect(json_decode($request->old_photos, true));
                 foreach ($adv->images as $key => $photo) {
                     if (!$old_photos->has($key) || $old_photos[$key] === null) {
@@ -125,8 +125,14 @@ class ProductController extends Controller
                     }
                 }
 
-               $images_path[] = array_merge($images_path,$adv->images->toArray());
+                $images_path_collect = collect($images_path);
+                $merge = $images_path_collect->merge($adv->images->toArray());
+                $merge->all();
 
+                //               $photos =  $adv->images->toArray();
+                //               $images_path[] = $photos->push($images_path);
+
+                dd($merge);
             } else {
                 // if old image delete below code execute
                 $old_photos = collect(json_decode($request->old_photos, true));
@@ -138,8 +144,6 @@ class ProductController extends Controller
                     }
                 }
             }
-
-
 
             $images_path = $adv->images;
             $author = Auth::guard('admin')->id();
