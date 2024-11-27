@@ -27,11 +27,11 @@
                 <div class="row">
                     {{--   advertisement fields  --}}
                     <div class="col-lg-6">
+
                         <div class="mt-5 mb-5 col">
                             <div class="my-5">موقعیت آگهی</div>
                             <label for="province-select" class="form-label">
-                                    <span style="margin-left: 10px"><i class="fa fa-star text-danger"
-                                                                       style="font-size:10px"></i></span>استان
+                                    <span style="margin-left: 10px"><i class="fa fa-star text-danger" style="font-size:10px"></i></span>استان
                             </label>
                             <select class="province-select form-select" id="province-select" name="province">
                                 <option value="">{{ __('messages.choose') }}</option>
@@ -55,8 +55,7 @@
 
                         <div class="mt-5 mb-5 col">
                             <label for="city-select" class="form-label">
-                                    <span style="margin-left: 10px"><i class="fa fa-star text-danger"
-                                                                       style="font-size:10px"></i></span>شهر
+                                    <span style="margin-left: 10px"><i class="fa fa-star text-danger" style="font-size:10px"></i></span>شهر
                             </label>
                             <select class="city-select form-select" id="city-select" name="city">
                                 @foreach($cities as $city)
@@ -147,6 +146,66 @@
                             </div>
                             @enderror
                         </div>
+
+                        <fieldset>
+                            <legend>لینک ها</legend>
+
+                            <div class="mt-2  col">
+                                <label for="website" class="form-label">وب سایت</label>
+                                <input type="text" class="form-control form-control-sm" id="website" name="website"
+                                       value="{{ $adv->website }}">
+                                @error('website')
+                                <div class="mt-3 alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+
+                            <div class="mt-2  col">
+                                <label for="telegram" class="form-label">تلگرام</label>
+                                <input type="text" class="form-control form-control-sm" id="telegram"
+                                       name="telegram" value="{{ $adv->telegram }}">
+                                @error('telegram')
+                                <div class="mt-3 alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+
+                            <div class="mt-2  col">
+                                <label for="instagram" class="form-label">اینستاگرام</label>
+                                <input type="text" class="form-control form-control-sm" id="instagram"
+                                       placeholder="" name="instagram" value="{{ $adv->instagram }}">
+                                @error('instagram')
+                                <div class="mt-3 alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+
+                            <div class="mt-5  col">
+                                <label for="rubika" class="form-label">روبیکا</label>
+                                <input type="text" class="form-control form-control-sm" id="rubika" name="rubika"
+                                       value="{{ $adv->rubika }}">
+                                @error('rubika')
+                                <div class="mt-3 alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+
+                            <div class="mt-5  col">
+                                <label for="eitaa" class="form-label">ایتا</label>
+                                <input type="text" class="form-control form-control-sm" id="eitaa" name="eitaa"
+                                       value="{{ $adv->eitaa }}">
+                                @error('eitaa')
+                                <div class="mt-3 alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                        </fieldset>
+
                     </div>
                     {{--   advertisement group  --}}
                     <div class="col-lg-6" style="height: fit-content">
@@ -155,8 +214,7 @@
                         <div class="mb-5 col" style="margin-top:2rem">
 
                             <label for="category-select" class="form-label">
-                                    <span style="margin-left: 10px"><i class="fa fa-star text-danger"
-                                                                       style="font-size:10px"></i></span>گروه آگهی
+                                    <span style="margin-left: 10px"><i class="fa fa-star text-danger" style="font-size:10px"></i></span>گروه آگهی
                             </label>
 
                             <div class="mt-5 col current-adv-group">
@@ -236,80 +294,8 @@
                             </div>
                             @enderror
                         </div>
-
-
-                    </div>
-
-                </div>
-
-                <div class="row">
-                    {{--   advertisement fields  --}}
-
-                    <div class="col-lg-6">
-                        <fieldset>
-                            <legend>لینک ها</legend>
-
-                            <div class="mt-2  col">
-                                <label for="website" class="form-label">وب سایت</label>
-                                <input type="text" class="form-control form-control-sm" id="website" name="website"
-                                       value="{{ $adv->website }}">
-                                @error('website')
-                                <div class="mt-3 alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-
-                            <div class="mt-2  col">
-                                <label for="telegram" class="form-label">تلگرام</label>
-                                <input type="text" class="form-control form-control-sm" id="telegram"
-                                       name="telegram" value="{{ $adv->telegram }}">
-                                @error('telegram')
-                                <div class="mt-3 alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-
-                            <div class="mt-2  col">
-                                <label for="instagram" class="form-label">اینستاگرام</label>
-                                <input type="text" class="form-control form-control-sm" id="instagram"
-                                       placeholder="" name="instagram" value="{{ $adv->instagram }}">
-                                @error('instagram')
-                                <div class="mt-3 alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-
-                            <div class="mt-5  col">
-                                <label for="rubika" class="form-label">روبیکا</label>
-                                <input type="text" class="form-control form-control-sm" id="rubika" name="rubika"
-                                       value="{{ $adv->rubika }}">
-                                @error('rubika')
-                                <div class="mt-3 alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-
-                            <div class="mt-5  col">
-                                <label for="eitaa" class="form-label">ایتا</label>
-                                <input type="text" class="form-control form-control-sm" id="eitaa" name="eitaa"
-                                       value="{{ $adv->eitaa }}">
-                                @error('eitaa')
-                                <div class="mt-3 alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                        </fieldset>
-                    </div>
-
-                    <div class="col-lg-6">
-
-
-                        <!-- image gallery adv  -->
+                        
+                        <!-- image upload -->
                         <div class="mt-5  col">
                             <label class="mb-5">تصاویر</label>
                             <!-- upload images using dropzone js -->
@@ -340,6 +326,15 @@
 
                     </div>
 
+                </div>
+
+                <div class="row">
+                    {{--   advertisement fields  --}}
+                    <div class="col-lg-6">
+                    </div>
+                    <div class="col-lg-6">
+                        <!-- image gallery adv  -->
+                    </div>
                 </div>
 
                 <div class="m-4 col d-flex justify-content-start">
