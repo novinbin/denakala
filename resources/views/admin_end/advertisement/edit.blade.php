@@ -245,7 +245,7 @@
                                                      aria-labelledby="headingOne"
                                                      data-bs-parent="#accordion-{{$category->id}}">
                                                     @if($category->hasChildren())
-                                                        @include('admin_end.category.child_category',['child'=> $category->children ])
+                                                        @include('admin_end.category.edit_child_category',['child'=> $category->children ])
                                                     @endif
                                                 </div>
                                             </div>

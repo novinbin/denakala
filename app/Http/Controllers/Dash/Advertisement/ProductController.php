@@ -122,28 +122,17 @@ class ProductController extends Controller
             if ($request->has('images')) {
 
                 // save new images path in image_path array
-//                foreach ($request->input('images', []) as $file) {
-//                    $images_path [] = '/uploads/' . $file;
-//                }
-
-
-
-
-                // merge old images with new images in array
-                // and save into database
-                // convert json into collection
+                //    foreach ($request->input('images', []) as $file) {
+                //        $images_path [] = '/uploads/' . $file;
+                //    }
 
                 // $old_photos = [];
                 $old_photos = collect(json_decode($request->old_photos, true));
-
-
-                // delete old photo from database & storage
-                // if user deleted
                 foreach ($adv->images as $key => $photo) {
                     if (!$old_photos->has($key) || $old_photos[$key] === null) {
-                        $path = env('app_url') . $photo;
+                        // $path = env('app_url').'/storage/public' . $photo;
+                        $path = '/storage/public' . $photo;
                         Storage::disk('public')->delete($path);
-                        // delete image from images collection
                         $adv->images->forget($key);
                     }
                 }
@@ -152,22 +141,16 @@ class ProductController extends Controller
             }
 
             $old_photos = collect(json_decode($request->old_photos, true));
-
-            // dd($old_photos,$adv->images);
-            // delete old photo from database & storage
-            // if user deleted
+            // dd( $old_photos,$adv->images );
             foreach ($adv->images as $key => $photo) {
                 if (!$old_photos->has($key) || $old_photos[$key] === null) {
-                    $path = env('app_url') . $photo;
-                    dd($path);
+                    // $path = env('app_url').'/storage/public' . $photo;
+                    $path = '/storage/public' . $photo;
                     Storage::disk('public')->delete($path);
-                    // delete image from images collection
                     $adv->images->forget($key);
                 }
             }
             $images_path = $adv->images;
-
-
 
 
             ////

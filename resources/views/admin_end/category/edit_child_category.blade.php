@@ -20,7 +20,7 @@
                 <div class="accordion-header p-4 item-category-title" id="headingOne">
                     <div class="ms-5 p-2 d-flex justify-content-start">
                         <div class="mx-2">
-                            <input  type="radio" class="mt-1" name="advGroup" value="{{ $category->id }}">
+                            <input {{ $category->id =   }} type="radio" class="mt-1" name="advGroup" value="{{ $category->id }}">
                         </div>
                         <div>
                             {{ $category->title }}
@@ -37,7 +37,7 @@
 
     <div class="collapse" id="collapse{{$category->id}}">
         @if($category->hasChildren())
-            @include('admin_end.category.child_category',['child'=>$category->children])
+            @include('admin_end.category.edit_child_category',['child'=>$category->children])
         @else
             <div>{{ __('messages.there_is_no_child') }}</div>
         @endif
