@@ -118,32 +118,41 @@ class ProductController extends Controller
         try {
 
             $adv = Advertisement::find($request->adv);
-            // save images path in database
+
+
+
+
             $images_path = [];
-            if ($request->has('images')) {
-                foreach ($request->input('images', []) as $file) {
-                    $images_path [] = '/uploads/' . $file;
+            if($request->has('images')){
+
+                // save images path in database
+                if ($request->has('images')) {
+                    foreach ($request->input('images', []) as $file) {
+                        $images_path [] = '/uploads/' . $file;
+                    }
                 }
-            }
-            // merge old images with new images in array
-            // and save into database
+                // merge old images with new images in array
+                // and save into database
 
 
-            $old_photos = [];
-            // convert json into collection
-            $old_photos =  collect(json_decode($request->old_photos,true));
+                $old_photos = [];
+                // convert json into collection
+                $old_photos = collect(json_decode($request->old_photos,true));
 
 
-            // delete old photo from database & file
-            // if user deleted
-            foreach ($adv->images as $key => $photo){
-                if(!$old_photos->has($key) || $old_photos[$key] === null ){
-                    $path = env('app_url').$key;
-                    Storage::disk('public')->delete($path);
-                    // delete image from images collection
-                    $adv->images->forget($key);
+                // delete old photo from database & file
+                // if user deleted
+                foreach ($adv->images as $key => $photo){
+                    if(!$old_photos->has($key) || $old_photos[$key] === null ){
+                        $path = env('app_url').$key;
+                        Storage::disk('public')->delete($path);
+                        // delete image from images collection
+                        $adv->images->forget($key);
+                    }
                 }
+
             }
+
 
 
 
@@ -173,7 +182,7 @@ class ProductController extends Controller
             $adv->instagram = $request->instagram;
             $adv->telegram = $request->telegram;
             $adv->save();
-            
+
 
             session()->flash('success', __('messages.The_update_was_completed_successfully'));
             return redirect()->route('admin.adv.index');
