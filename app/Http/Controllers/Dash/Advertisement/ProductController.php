@@ -11,7 +11,7 @@ use App\Repositories\ProductRepository;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
@@ -39,21 +39,16 @@ class ProductController extends Controller
     {
         try {
 
-
-            // save images path in database
             $images_path = [];
             if ($request->has('images')) {
                 foreach ($request->input('images', []) as $file) {
                     $images_path [] = '/uploads/' . $file;
                 }
             }
-
             $this->productRepository->store($request, $images_path);
             session()->flash('success', __('messages.New_record_saved_successfully'));
             return redirect()->route('admin.adv.index');
-
         } catch (\Exception $ex) {
-            return $ex->getMessage();
             return view('errors_custom.model_store_error');
         }
     }
@@ -64,12 +59,7 @@ class ProductController extends Controller
 
         try {
 
-            // $category_ids[] = '';
-            // foreach ($product->categories as $cat)
-            // {
-            //    $category_ids[] = $cat->id;
-            // }
-            // $categories =  '';
+
 
 
             $adv = Advertisement::findOrFail($request->adv);
@@ -89,7 +79,6 @@ class ProductController extends Controller
                     'provinces' => $provinces, 'advGroups' => $current_adv_group]);
 
         } catch (\Exception $ex) {
-            //return  $ex->getMessage();
             return view('errors_custom.model_not_found');
         }
 
@@ -98,7 +87,7 @@ class ProductController extends Controller
     public function update(Request $request)
     {
 
-        // dd($request->all());
+
 
         $request->validate([
             'advGroup' => ['nullable'],
@@ -135,18 +124,20 @@ class ProductController extends Controller
                         $adv->images->forget($key);
                     }
                 }
-
-                $images_path = $adv->images;
-            }
-
-            $old_photos = collect(json_decode($request->old_photos, true));
-            foreach ($adv->images as $key => $photo) {
-                if (!$old_photos->has($key) || $old_photos[$key] === null) {
-                    // $path = env('app_url').'/storage/public' . $photo;
-                    Storage::disk('public')->delete($photo);
-                    $adv->images->forget($key);
+                $images_path[] = $adv->images;
+            } else {
+                // if old image delete below code execute
+                $old_photos = collect(json_decode($request->old_photos, true));
+                foreach ($adv->images as $key => $photo) {
+                    if (!$old_photos->has($key) || $old_photos[$key] === null) {
+                        // $path = env('app_url').'/storage/public' . $photo;
+                        Storage::disk('public')->delete($photo);
+                        $adv->images->forget($key);
+                    }
                 }
             }
+
+
 
             $images_path = $adv->images;
             $author = Auth::guard('admin')->id();

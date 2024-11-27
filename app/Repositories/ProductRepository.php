@@ -27,6 +27,7 @@ class ProductRepository
 
 
         // for save product public info
+        $slug = str_replace('-', ' ', $request->title);
 
         $author = Auth::guard('admin')->id();
         $createdProduct = Advertisement::create([
@@ -41,7 +42,7 @@ class ProductRepository
             'description' => $request->description,
             'seo_desc' => $request->seo_desc,
             'adv_category_id' => $request->advGroup,
-            'slug' => $request->slug,
+            'slug' => $slug,
             'video_link' => $request->video_link,
             'advertiser_phone' => $request->advertiser_phone,
             'owner' => $request->owner,
