@@ -125,9 +125,8 @@ class ProductController extends Controller
                     }
                 }
 
-                $images_path;
-                $adv->images->toArray();
-                
+               $images_path[] = array_merge($images_path,$adv->images->toArray());
+
             } else {
                 // if old image delete below code execute
                 $old_photos = collect(json_decode($request->old_photos, true));
