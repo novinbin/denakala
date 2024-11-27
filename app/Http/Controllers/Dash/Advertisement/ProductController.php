@@ -11,6 +11,7 @@ use App\Repositories\ProductRepository;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 // use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
@@ -60,8 +61,6 @@ class ProductController extends Controller
         try {
 
 
-
-
             $adv = Advertisement::findOrFail($request->adv);
             $categories = AdvCategory::tree()->get()->toTree();
             $provinces = Province::all();
@@ -88,7 +87,6 @@ class ProductController extends Controller
     {
 
 
-
         $request->validate([
             'advGroup' => ['nullable'],
             'title' => ['required', Rule::unique('products')->ignore($request->adv), 'min:2', 'max:100'],
@@ -103,36 +101,36 @@ class ProductController extends Controller
             'email' => ['nullable', 'email']
         ]);
 
+        if($request->has('old_photos') && empty($request->old_photos)){
 
+            return 'true';
+        }
         try {
 
             $adv = Advertisement::find($request->adv);
             $images_path = [];
             if ($request->has('images')) {
-
                 // save new images path in image_path array
                 foreach ($request->input('images', []) as $file) {
                     $images_path [] = '/uploads/' . $file;
                 }
-
-
-                $old_photos = collect(json_decode($request->old_photos, true));
-                foreach ($adv->images as $key => $photo) {
-                    if (!$old_photos->has($key) || $old_photos[$key] === null) {
-                        // $path = env('app_url').'/storage/public' . $photo;
-                        Storage::disk('public')->delete($photo);
-                        $adv->images->forget($key);
+                //
+                if($request->has('old_photos') && $request->old_photos != null)
+                {
+                    $old_photos = collect(json_decode($request->old_photos, true));
+                    foreach ($adv->images as $key => $photo) {
+                        if (!$old_photos->has($key) || $old_photos[$key] === null) {
+                            // $path = env('app_url').'/storage/public' . $photo;
+                            Storage::disk('public')->delete($photo);
+                            $adv->images->forget($key);
+                        }
                     }
                 }
 
+                //
                 $images_path_collect = collect($images_path);
                 $merge = $images_path_collect->merge($adv->images->toArray());
-                $merge->all();
-
-                //               $photos =  $adv->images->toArray();
-                //               $images_path[] = $photos->push($images_path);
-
-                dd($merge);
+                $images_path[] = $merge->toArray();
             } else {
                 // if old image delete below code execute
                 $old_photos = collect(json_decode($request->old_photos, true));
@@ -145,7 +143,7 @@ class ProductController extends Controller
                 }
             }
 
-            $images_path = $adv->images;
+
             $author = Auth::guard('admin')->id();
             $slug = str_replace('-', ' ', $request->title);
             $adv->status = $request->status;
