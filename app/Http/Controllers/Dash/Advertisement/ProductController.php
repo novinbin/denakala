@@ -141,14 +141,33 @@ class ProductController extends Controller
                 // if user deleted
                 foreach ($adv->images as $key => $photo) {
                     if (!$old_photos->has($key) || $old_photos[$key] === null) {
-                        $path = env('app_url') . $key;
+                        $path = env('app_url') . $photo;
                         Storage::disk('public')->delete($path);
                         // delete image from images collection
                         $adv->images->forget($key);
                     }
                 }
 
+                $images_path = $adv->images;
             }
+
+            $old_photos = collect(json_decode($request->old_photos, true));
+
+            // dd($old_photos,$adv->images);
+            // delete old photo from database & storage
+            // if user deleted
+            foreach ($adv->images as $key => $photo) {
+                if (!$old_photos->has($key) || $old_photos[$key] === null) {
+                    $path = env('app_url') . $photo;
+                    dd($path);
+                    Storage::disk('public')->delete($path);
+                    // delete image from images collection
+                    $adv->images->forget($key);
+                }
+            }
+            $images_path = $adv->images;
+
+
 
 
             ////
