@@ -124,7 +124,10 @@ class ProductController extends Controller
                         $adv->images->forget($key);
                     }
                 }
-                $images_path[] = $adv->images;
+
+                $images_path;
+                $adv->images->toArray();
+                
             } else {
                 // if old image delete below code execute
                 $old_photos = collect(json_decode($request->old_photos, true));
