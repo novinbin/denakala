@@ -24,323 +24,321 @@
                 <input type="hidden" name="adv" value="{{ $adv->id }}">
 
 
-                <div class="container">
-                    <div class="row">
-                        {{--   advertisement fields  --}}
-                        <div class="col-lg-6">
-                            <div class="mt-5 mb-5 col">
-                                <div class="my-5">موقعیت آگهی</div>
-                                <label for="province-select" class="form-label">
+                <div class="row">
+                    {{--   advertisement fields  --}}
+                    <div class="col-lg-6">
+                        <div class="mt-5 mb-5 col">
+                            <div class="my-5">موقعیت آگهی</div>
+                            <label for="province-select" class="form-label">
                                     <span style="margin-left: 10px"><i class="fa fa-star text-danger"
                                                                        style="font-size:10px"></i></span>استان
-                                </label>
-                                <select class="province-select form-select" id="province-select" name="province">
-                                    <option value="">{{ __('messages.choose') }}</option>
-                                    @foreach($provinces as $province)
+                            </label>
+                            <select class="province-select form-select" id="province-select" name="province">
+                                <option value="">{{ __('messages.choose') }}</option>
+                                @foreach($provinces as $province)
 
-                                        @if ($province->id == $adv->province_id)
-                                            <option selected value="{{ $province->id }}">{{ $province->name }}</option>
-                                        @else
-                                            <option value="{{ $province->id }}">{{ $province->name }}</option>
-                                        @endif
+                                    @if ($province->id == $adv->province_id)
+                                        <option selected value="{{ $province->id }}">{{ $province->name }}</option>
+                                    @else
+                                        <option value="{{ $province->id }}">{{ $province->name }}</option>
+                                    @endif
 
-                                    @endforeach
-                                </select>
-                                @error('province')
-                                <div class="my-5 alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                                @enderror
+                                @endforeach
+                            </select>
+                            @error('province')
+                            <div class="my-5 alert alert-danger">
+                                {{ $message }}
                             </div>
+                            @enderror
+                        </div>
 
 
-                            <div class="mt-5 mb-5 col">
-                                <label for="city-select" class="form-label">
+                        <div class="mt-5 mb-5 col">
+                            <label for="city-select" class="form-label">
                                     <span style="margin-left: 10px"><i class="fa fa-star text-danger"
                                                                        style="font-size:10px"></i></span>شهر
-                                </label>
-                                <select class="city-select form-select" id="city-select" name="city">
-                                    @foreach($cities as $city)
+                            </label>
+                            <select class="city-select form-select" id="city-select" name="city">
+                                @foreach($cities as $city)
 
-                                        @if ($city->id == $adv->city_id)
-                                            <option selected value="{{ $city->id }}">{{ $city->name }}</option>
-                                        @else
-                                            <option value="{{ $city->id }}">{{ $city->name }}</option>
-                                        @endif
+                                    @if ($city->id == $adv->city_id)
+                                        <option selected value="{{ $city->id }}">{{ $city->name }}</option>
+                                    @else
+                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                    @endif
 
-                                    @endforeach
-                                </select>
-                                @error('city')
-                                <div class="my-5 alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                                @enderror
+                                @endforeach
+                            </select>
+                            @error('city')
+                            <div class="my-5 alert alert-danger">
+                                {{ $message }}
                             </div>
+                            @enderror
+                        </div>
 
 
-                            <div class="mt-5  col">
-                                <label for="title" class="form-label"><span style="margin-left: 10px">
+                        <div class="mt-5  col">
+                            <label for="title" class="form-label"><span style="margin-left: 10px">
                                         <i class="fa fa-star text-danger" style="font-size:10px"></i></span>عنوان آگهی
-                                </label>
-                                <input type="text" class="form-control" id="title" name="title"
-                                       value="{{ $adv->title }}">
-                                @error('title')
-                                <div class="mt-3 alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                                @enderror
+                            </label>
+                            <input type="text" class="form-control" id="title" name="title"
+                                   value="{{ $adv->title }}">
+                            @error('title')
+                            <div class="mt-3 alert alert-danger">
+                                {{ $message }}
                             </div>
+                            @enderror
+                        </div>
 
 
-                            <div class="mt-5  col">
-                                <label for="description" class="mb-2 form-label">
+                        <div class="mt-5  col">
+                            <label for="description" class="mb-2 form-label">
                                     <span style="margin-left: 10px"><i class="fa fa-star text-danger"
                                                                        style="font-size:10px"></i></span>شرح آگهی
-                                </label>
-                                <textarea class="mt-1 form-control" rows="8" id="description"
-                                          name="description">{{ $adv->description }}</textarea>
-                                @error('description')
-                                <div class="mt-3 alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                                @enderror
+                            </label>
+                            <textarea class="mt-1 form-control" rows="8" id="description"
+                                      name="description">{{ $adv->description }}</textarea>
+                            @error('description')
+                            <div class="mt-3 alert alert-danger">
+                                {{ $message }}
                             </div>
+                            @enderror
+                        </div>
 
 
-                            <div class="mt-5  col">
-                                <label for="advertiser_phone" class="form-label"><span style="margin-left: 10px">
+                        <div class="mt-5  col">
+                            <label for="advertiser_phone" class="form-label"><span style="margin-left: 10px">
                                         <i class="fa fa-star text-danger" style="font-size:10px"></i></span>تلفن /
-                                    موبایل
-                                </label>
-                                <input type="text" class="form-control" id="advertiser_phone" name="advertiser_phone"
-                                       value="{{ $adv->advertiser_phone }}">
-                                @error('advertiser_phone')
-                                <div class="mt-3 alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                                @enderror
+                                موبایل
+                            </label>
+                            <input type="text" class="form-control" id="advertiser_phone" name="advertiser_phone"
+                                   value="{{ $adv->advertiser_phone }}">
+                            @error('advertiser_phone')
+                            <div class="mt-3 alert alert-danger">
+                                {{ $message }}
                             </div>
+                            @enderror
+                        </div>
 
-                            <div class="col" style="margin-top:4rem">
-                                <label for="owner" class="form-label"><span style="margin-left: 10px">
+                        <div class="col" style="margin-top:4rem">
+                            <label for="owner" class="form-label"><span style="margin-left: 10px">
                                         <i class="fa fa-star text-danger" style="font-size:10px"></i></span> نام اگهی
-                                    دهنده
-                                </label>
-                                <input type="text" class="form-control" id="owner" name="owner"
-                                       value="{{ $adv->owner }}">
-                                @error('owner')
-                                <div class="mt-3 alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                                @enderror
+                                دهنده
+                            </label>
+                            <input type="text" class="form-control" id="owner" name="owner"
+                                   value="{{ $adv->owner }}">
+                            @error('owner')
+                            <div class="mt-3 alert alert-danger">
+                                {{ $message }}
                             </div>
+                            @enderror
+                        </div>
 
-                            <div class="mt-5 mb-5  col">
-                                <label for="keywords" class="form-label">
+                        <div class="mt-5 mb-5  col">
+                            <label for="keywords" class="form-label">
                                     <span style="margin-left: 10px"><i class="fa fa-star text-danger"
                                                                        style="font-size:10px"></i></span>عبارات کلیدی
-                                </label>
-                                <input type="hidden" name="keywords" id="keywords" value="{{ $adv->keywords }}">
-                                <select class="form-select" multiple="multiple" id="product_keywords"></select>
-                                @error('keywords')
-                                <div class="mt-3 alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                                @enderror
+                            </label>
+                            <input type="hidden" name="keywords" id="keywords" value="{{ $adv->keywords }}">
+                            <select class="form-select" multiple="multiple" id="product_keywords"></select>
+                            @error('keywords')
+                            <div class="mt-3 alert alert-danger">
+                                {{ $message }}
                             </div>
+                            @enderror
                         </div>
-                        {{--   advertisement group  --}}
-                        <div class="col-lg-6" style="height: fit-content">
+                    </div>
+                    {{--   advertisement group  --}}
+                    <div class="col-lg-6" style="height: fit-content">
 
 
-                            <div class="mb-5 col" style="margin-top:2rem">
+                        <div class="mb-5 col" style="margin-top:2rem">
 
-                                <label for="category-select" class="form-label">
+                            <label for="category-select" class="form-label">
                                     <span style="margin-left: 10px"><i class="fa fa-star text-danger"
                                                                        style="font-size:10px"></i></span>گروه آگهی
-                                </label>
+                            </label>
 
-                                <div class="mt-5 col current-adv-group">
-                                    @if($advGroups)
-                                        <div style="font-size: 1.2rem">{{ $advGroups }}</div>
-                                    @endif
+                            <div class="mt-5 col current-adv-group">
+                                @if($advGroups)
+                                    <div style="font-size: 1.2rem">{{ $advGroups }}</div>
+                                @endif
+                            </div>
+
+                            @if($categories->isEmpty())
+                                <div style="margin-top:1rem"
+                                     class="bg-white  border alert d-flex justify-content-center border-1 border-secondary no-categories">
+                                    <p class="my-auto text-center">{{ __('messages.there_is_no_ad_grouping') }}</p>
                                 </div>
-
-                                @if($categories->isEmpty())
-                                    <div style="margin-top:1rem"
-                                         class="bg-white  border alert d-flex justify-content-center border-1 border-secondary no-categories">
-                                        <p class="my-auto text-center">{{ __('messages.there_is_no_ad_grouping') }}</p>
-                                    </div>
-                                @else
-                                    <div class="category-content mt-5 py-2" style="max-height:500px;overflow-y:auto">
-                                        @foreach($categories as $category)
-                                            <div class="accordion mt-2 " id="accordion-{{$category->id}}">
-                                                <div class="accordion-item">
-                                                    <h2 class="accordion-header" id="headingOne">
-                                                        <button class="accordion-button" type="button"
-                                                                data-bs-toggle="collapse"
-                                                                data-bs-target="#collapse-{{$category->id}}"
-                                                                aria-expanded="true"
-                                                                aria-controls="collapseOne">
-                                                            {{ $category->title }}
-                                                        </button>
-                                                    </h2>
-                                                    <div id="collapse-{{$category->id}}"
-                                                         class="accordion-collapse collapse"
-                                                         aria-labelledby="headingOne"
-                                                         data-bs-parent="#accordion-{{$category->id}}">
-                                                        @if($category->hasChildren())
-                                                            @include('admin_end.category.child_category',['child'=> $category->children ])
-                                                        @endif
-                                                    </div>
+                            @else
+                                <div class="category-content mt-5 py-2" style="max-height:500px;overflow-y:auto">
+                                    @foreach($categories as $category)
+                                        <div class="accordion mt-2 " id="accordion-{{$category->id}}">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="headingOne">
+                                                    <button class="accordion-button" type="button"
+                                                            data-bs-toggle="collapse"
+                                                            data-bs-target="#collapse-{{$category->id}}"
+                                                            aria-expanded="true"
+                                                            aria-controls="collapseOne">
+                                                        {{ $category->title }}
+                                                    </button>
+                                                </h2>
+                                                <div id="collapse-{{$category->id}}"
+                                                     class="accordion-collapse collapse"
+                                                     aria-labelledby="headingOne"
+                                                     data-bs-parent="#accordion-{{$category->id}}">
+                                                    @if($category->hasChildren())
+                                                        @include('admin_end.category.child_category',['child'=> $category->children ])
+                                                    @endif
                                                 </div>
                                             </div>
-                                        @endforeach
-                                    </div>
-                                @endif
-                                @error('advGroup')
-                                <div class="my-5 alert alert-danger">
-                                    {{ $message }}
+                                        </div>
+                                    @endforeach
                                 </div>
-                                @enderror
+                            @endif
+                            @error('advGroup')
+                            <div class="my-5 alert alert-danger">
+                                {{ $message }}
                             </div>
-
-                            <div class="mt-5 col">
-                                <label for="address" class="form-label">آدرس</label>
-                                <input type="address" class="form-control" id="address" name="address"
-                                       value="{{ $adv->address }}">
-                                @error('address')
-                                <div class="mt-3 alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-
-                            <div class="mt-5  col">
-                                <label for="email" class="form-label">ایمیل</label>
-                                <input type="text" class="form-control" id="email" name="email"
-                                       value="{{ $adv->email }}">
-                                @error('email')
-                                <div class="mt-3 alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-
-                            <div class="mt-5  col">
-                                <label for="seo_desc" class="mb-5">توضیحات سئو</label>
-                                <input type="text" class="form-control" name="seo_desc" id="seo_desc"
-                                       value="{{ $adv->seo_desc }}">
-                                @error('seo_desc')
-                                <div class="mt-3 alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-
-
+                            @enderror
                         </div>
+
+                        <div class="mt-5 col">
+                            <label for="address" class="form-label">آدرس</label>
+                            <input type="address" class="form-control" id="address" name="address"
+                                   value="{{ $adv->address }}">
+                            @error('address')
+                            <div class="mt-3 alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+
+                        <div class="mt-5  col">
+                            <label for="email" class="form-label">ایمیل</label>
+                            <input type="text" class="form-control" id="email" name="email"
+                                   value="{{ $adv->email }}">
+                            @error('email')
+                            <div class="mt-3 alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+
+                        <div class="mt-5  col">
+                            <label for="seo_desc" class="mb-5">توضیحات سئو</label>
+                            <input type="text" class="form-control" name="seo_desc" id="seo_desc"
+                                   value="{{ $adv->seo_desc }}">
+                            @error('seo_desc')
+                            <div class="mt-3 alert alert-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+
 
                     </div>
 
+                </div>
 
-                    <div class="row">
-                        {{--   advertisement fields  --}}
+                <div class="row">
+                    {{--   advertisement fields  --}}
 
-                        <div class="col-lg-6">
-                            <fieldset>
-                                <legend>لینک ها</legend>
+                    <div class="col-lg-6">
+                        <fieldset>
+                            <legend>لینک ها</legend>
 
-                                <div class="mt-2  col">
-                                    <label for="website" class="form-label">وب سایت</label>
-                                    <input type="text" class="form-control form-control-sm" id="website" name="website"
-                                           value="{{ $adv->website }}">
-                                    @error('website')
-                                    <div class="mt-3 alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
+                            <div class="mt-2  col">
+                                <label for="website" class="form-label">وب سایت</label>
+                                <input type="text" class="form-control form-control-sm" id="website" name="website"
+                                       value="{{ $adv->website }}">
+                                @error('website')
+                                <div class="mt-3 alert alert-danger">
+                                    {{ $message }}
                                 </div>
+                                @enderror
+                            </div>
 
-                                <div class="mt-2  col">
-                                    <label for="telegram" class="form-label">تلگرام</label>
-                                    <input type="text" class="form-control form-control-sm" id="telegram"
-                                           name="telegram" value="{{ $adv->telegram }}">
-                                    @error('telegram')
-                                    <div class="mt-3 alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
+                            <div class="mt-2  col">
+                                <label for="telegram" class="form-label">تلگرام</label>
+                                <input type="text" class="form-control form-control-sm" id="telegram"
+                                       name="telegram" value="{{ $adv->telegram }}">
+                                @error('telegram')
+                                <div class="mt-3 alert alert-danger">
+                                    {{ $message }}
                                 </div>
+                                @enderror
+                            </div>
 
-                                <div class="mt-2  col">
-                                    <label for="instagram" class="form-label">اینستاگرام</label>
-                                    <input type="text" class="form-control form-control-sm" id="instagram"
-                                           placeholder="" name="instagram" value="{{ $adv->instagram }}">
-                                    @error('instagram')
-                                    <div class="mt-3 alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
+                            <div class="mt-2  col">
+                                <label for="instagram" class="form-label">اینستاگرام</label>
+                                <input type="text" class="form-control form-control-sm" id="instagram"
+                                       placeholder="" name="instagram" value="{{ $adv->instagram }}">
+                                @error('instagram')
+                                <div class="mt-3 alert alert-danger">
+                                    {{ $message }}
                                 </div>
+                                @enderror
+                            </div>
 
-                                <div class="mt-5  col">
-                                    <label for="rubika" class="form-label">روبیکا</label>
-                                    <input type="text" class="form-control form-control-sm" id="rubika" name="rubika"
-                                           value="{{ $adv->rubika }}">
-                                    @error('rubika')
-                                    <div class="mt-3 alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
+                            <div class="mt-5  col">
+                                <label for="rubika" class="form-label">روبیکا</label>
+                                <input type="text" class="form-control form-control-sm" id="rubika" name="rubika"
+                                       value="{{ $adv->rubika }}">
+                                @error('rubika')
+                                <div class="mt-3 alert alert-danger">
+                                    {{ $message }}
                                 </div>
+                                @enderror
+                            </div>
 
-                                <div class="mt-5  col">
-                                    <label for="eitaa" class="form-label">ایتا</label>
-                                    <input type="text" class="form-control form-control-sm" id="eitaa" name="eitaa"
-                                           value="{{ $adv->eitaa }}">
-                                    @error('eitaa')
-                                    <div class="mt-3 alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
+                            <div class="mt-5  col">
+                                <label for="eitaa" class="form-label">ایتا</label>
+                                <input type="text" class="form-control form-control-sm" id="eitaa" name="eitaa"
+                                       value="{{ $adv->eitaa }}">
+                                @error('eitaa')
+                                <div class="mt-3 alert alert-danger">
+                                    {{ $message }}
                                 </div>
-                            </fieldset>
+                                @enderror
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="col-lg-6">
+
+
+                        <!-- image gallery adv  -->
+                        <div class="mt-5  col">
+                            <label class="mb-5">تصاویر</label>
+                            <!-- upload images using dropzone js -->
+                            <div class="advImages needsclick dropzone d-flex flex-wrap"
+                                 style="background-color:transparent" id="document-dropzone">
+                                <div class="dz-message  d-flex flex-column" id="dropzoneClick">
+                                    <div class="d-flex justify-content-center">
+                                        <img width="120" height="120"
+                                             src="{{ asset('admin_assets/images/no-image-icon-23494.png') }}"
+                                             alt="upload-image"/>
+                                    </div>
+                                    <div style="width: 100px">
+                                        <span class="text text-wrap lh-sm">تصاویر خود را در اینجا آپلود کنید</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="my-2">
+                                <p class="text-danger">{{ __('messages.before_uploading_images_make_sure_that_the_starred_fields_are_complete') }}</p>
+                                <p>{{ __('messages.images_are_uploaded_automatically') }}</p>
+                            </div>
                         </div>
 
-                        <div class="col-lg-6">
-
-
-                            <!-- image gallery adv  -->
-                            <div class="mt-5  col">
-                                <label class="mb-5">تصاویر</label>
-                                <!-- upload images using dropzone js -->
-                                <div class="advImages needsclick dropzone d-flex flex-wrap" style="background-color:transparent" id="document-dropzone">
-                                    <div class="dz-message  d-flex flex-column" id="dropzoneClick">
-                                        <div class="d-flex justify-content-center">
-                                            <img width="120" height="120" src="{{ asset('admin_assets/images/no-image-icon-23494.png') }}" alt="upload-image"/>
-                                        </div>
-                                        <div style="width: 100px">
-                                            <span class="text text-wrap lh-sm">تصاویر خود را در اینجا آپلود کنید</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="my-2">
-                                    <p class="text-danger">{{ __('messages.before_uploading_images_make_sure_that_the_starred_fields_are_complete') }}</p>
-                                    <p>{{ __('messages.images_are_uploaded_automatically') }}</p>
-                                </div>
-                            </div>
-
-                            <div class="mt-5 col">
-                                @if($adv->images != null)
-                                    @include('admin_end.advertisement.photos' ,['photos' => $adv->images])
-                                @endif
-                            </div>
-
+                        <div class="mt-5 col">
+                            @if($adv->images != null)
+                                @include('admin_end.advertisement.photos' ,['photos' => $adv->images])
+                            @endif
                         </div>
 
                     </div>
-
 
                 </div>
 
